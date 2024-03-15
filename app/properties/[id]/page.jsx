@@ -35,7 +35,7 @@ export default function PropertyPage() {
       {loading && <Spinner loading={loading} />}
       {!loading && property && (
         <>
-          <PropertyHeaderImage image={property.images[0]} />
+          <PropertyHeaderImage property={property} />
           <section>
             <div className="container m-auto py-6 px-6">
               <Link href={'/properties'} className="text-blue-500 hover:text-blue-600 flex items-center">
