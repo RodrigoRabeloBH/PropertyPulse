@@ -58,5 +58,29 @@ export const amenities = [
     {
         id: 'amenity_coffee_maker',
         value: 'Coffee Maker'
+    },
+    {
+        id: 'amenity_outdoor_grill_bbq',
+        value: 'Outdoor Grill/BBQ'
+    },
+    {
+        id: 'amenity_high_speed_internet',
+        value: 'High-Speed Internet'
+    },
+    {
+        id: 'amenity_fireplace',
+        value: 'Fireplace'
+    },
+    {
+        id: 'amenity_beach_access',
+        value: 'Beach Access'
+    },
+    {
+        id: 'amenity_hiking_trails_access',
+        value: 'Hiking Trails Access'
+    },
+    {
+        id: 'amenity_pet_friendly',
+        value: 'Pet-Friendly'
     }
 ]

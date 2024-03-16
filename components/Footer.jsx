@@ -19,6 +19,11 @@ export default function Footer() {
                         &copy; 2024 PropertyPulse. All rights reserved.
                     </p>
                 </div>
+                <div>
+                    <p className="text-sm text-gray-100 mt-2 md:mt-0">
+                        Developed by Rodrigo Rabelo
+                    </p>
+                </div>
             </div>
         </footer>
     )

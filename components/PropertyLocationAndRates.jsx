@@ -1,4 +1,4 @@
-import { FaMapMarker, FaTimes } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaTimes } from 'react-icons/fa';
 
 export default function PropertyLocationAndRates({ property }) {
     return (
@@ -6,8 +6,8 @@ export default function PropertyLocationAndRates({ property }) {
             <div className="text-gray-500 mb-4 font-bold text-lg">{property.type}</div>
             <h1 className="text-3xl font-bold mb-4">{property.name}</h1>
             <div className="text-gray-500 mb-4 flex align-middle justify-center md:justify-start">
-                <FaMapMarker className=" text-lg text-orange-700 mr-2" />
-                <p className="text-orange-700">
+                <FaMapMarkerAlt className=" text-lg text-red-700 mr-2" />
+                <p className="text-red-700">
                     {property.location.street} , {property.location.city} {property.location.state}
                 </p>
             </div>

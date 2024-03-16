@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import { FaBed, FaBath, FaRulerCombined, FaMoneyBill, FaMapMarker } from 'react-icons/fa'
+import { FaBed, FaBath, FaRulerCombined, FaMoneyBill, FaMapMarkerAlt } from 'react-icons/fa'
 
 export default function PropertyCard({ property }) {
 
@@ -59,9 +59,9 @@ export default function PropertyCard({ property }) {
 
                 <div className="flex flex-col md:flex-row justify-between mb-4">
                     <div className="flex align-middle gap-2 mb-4 lg:mb-0">
-                        <FaMapMarker className="fa-solid text-lg text-orange-700"
+                        <FaMapMarkerAlt className="fa-solid text-lg text-red-700"
                         />
-                        <span className="text-orange-700">{property.location.city} {property.location.state} </span>
+                        <span className="text-red-700">{property.location.city} {property.location.state} </span>
                     </div>
                     <Link
                         href={`/properties/${property._id}`}
