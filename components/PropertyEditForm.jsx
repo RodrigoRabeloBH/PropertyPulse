@@ -94,9 +94,9 @@ const PropertyEditForm = () => {
                 if (res.status === 401 || res.status === 403)
                     toast.error('Permission denied');
 
-            }).catch(() => toast.error('Failed to upadate property'))
-
+            }).catch(() => toast.error('Failed to upadate property'));
     }
+
     return (
         mounted && !loading && (
             <form autoComplete='off' onSubmit={(e => handleSubmit(e))}>

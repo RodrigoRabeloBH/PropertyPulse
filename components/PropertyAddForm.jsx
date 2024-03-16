@@ -2,10 +2,16 @@
 import { useState, useEffect } from 'react';
 import { propertyCreateModel } from '@/models/propertyCreateModel';
 import { amenities } from '@/models/amenities';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
+import Spinner from '@/components/Spinner';
+import { createProperty } from '@/utils/propertiesActions';
 
 const PropertyAddForm = () => {
     const [mounted, setMounted] = useState(false);
     const [fields, setFields] = useState(propertyCreateModel);
+    const router = useRouter();
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         setMounted(true);
@@ -76,14 +82,21 @@ const PropertyAddForm = () => {
         }));
     };
 
+    function handleSubmit(e) {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        setLoading(true);
+        createProperty(formData)
+            .then((res) => {
+                toast.success('Property created successfully 👌');
+                router.push(`/properties/${res._id}`);
+            }).catch(() => toast.error('Failed to create property'))
+            .finally(() => setLoading(false));
+    }
+
     return (
         mounted && (
-            <form
-                autoComplete='off'
-                action='/api/properties'
-                method='POST'
-                encType='multipart/form-data'
-            >
+            <form onSubmit={handleSubmit}>
                 <h2 className='text-3xl text-center font-semibold mb-6'>
                     Add Property
                 </h2>
@@ -401,7 +414,9 @@ const PropertyAddForm = () => {
                         required
                     />
                 </div>
-
+                <div>
+                    <Spinner loading={loading} size={30} />
+                </div>
                 <div>
                     <button
                         className='bg-blue-500 hover:bg-blue-600 text-white font-bold 

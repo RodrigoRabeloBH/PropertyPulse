@@ -51,7 +51,7 @@ export async function createProperty(formData) {
 
         if (!res.ok)
             throw new Error('Failed to create property');
-        return res;
+        return await res.json();
     } catch (error) {
         throw new Error(error);
     }
@@ -87,5 +87,46 @@ export async function deleteProperty(propertyId) {
         return res;
     } catch (error) {
         throw new Error('Failed to delete property', error);
+    }
+}
+
+export async function bookmarkProperty(propertyId) {
+
+    try {
+        if (!apiDomain)
+            return null;
+
+        const res = await fetch(`${apiDomain}/bookmarks`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ propertyId })
+        });
+
+        return res;
+
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+export async function chekBookmarkProperty(propertyId) {
+    try {
+        if (!apiDomain)
+            return null;
+
+        const res = await fetch(`${apiDomain}/bookmarks/check`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ propertyId })
+        });
+
+        return await res.json();
+
+    } catch (error) {
+        throw new Error(error);
     }
 }

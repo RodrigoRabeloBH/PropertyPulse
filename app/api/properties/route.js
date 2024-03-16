@@ -49,12 +49,13 @@ export async function POST(request) {
         }
 
         const propertyData = createProperyData(formData, session.userId, uploadedImages);
-        const newProperty = new Property(propertyData);
+        const createdProperty = new Property(propertyData);
 
-        await newProperty.save();
+        await createdProperty.save();
 
-        return Response.redirect(`${process.env.NEXTAUTH_URL}/properties/${newProperty._id}`);
-     
+        return new Response(JSON.stringify(createdProperty), { status: 201 });
+
+        // return Response.redirect(`${process.env.NEXTAUTH_URL}/properties/${createdProperty._id}`);
     } catch (error) {
         return new Response('Failed to add property', { status: 500 });
     }
