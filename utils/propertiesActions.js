@@ -152,3 +152,73 @@ export async function chekBookmarkProperty(propertyId) {
         throw new Error(error);
     }
 }
+
+export async function getMessages() {
+    try {
+        if (!apiDomain)
+            return null;
+        const res = await fetch(`${apiDomain}/messages`);
+        return res;
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+export async function sendMessage(message) {
+    try {
+        if (!apiDomain)
+            return null;
+
+        const res = await fetch(`${apiDomain}/messages`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(message)
+        },)
+        return res;
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+export async function deleteMessage(messageId) {
+    try {
+        if (!apiDomain)
+            return null;
+
+        const res = await fetch(`${apiDomain}/messages/${messageId}`, {
+            method: 'DELETE'
+        });
+
+        return res;
+
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+export async function markAsRead(messageId) {
+    try {
+        if (!apiDomain)
+            return null;
+
+        const res = await fetch(`${apiDomain}/messages/${messageId}`, {
+            method: 'PUT',
+            body: {}
+        });
+
+        return res;
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+export async function getUnreadMessagesCount() {
+    try {
+        if (!apiDomain)
+            return null;
+        const res = await fetch(`${apiDomain}/messages/unread-count`);
+        return res;
+    } catch (error) {
+        throw new Error(error);
+    }
+}

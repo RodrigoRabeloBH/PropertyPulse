@@ -28,7 +28,7 @@ export default function Navbar() {
     }, []);
 
     return (
-        <nav className='bg-blue-700 border-b border-blue-500'>
+        <nav className='bg-blue-700 border-b border-blue-500 sticky top-0 z-50'>
             <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
                 <div className='relative flex h-20 items-center justify-between'>
                     <div className='absolute inset-y-0 left-0 flex items-center md:hidden'>
@@ -45,7 +45,7 @@ export default function Navbar() {
                     )}
                     {session && (
                         <div className='absolute inset-y-0 right-0 flex items-center pr-2 md:pr-0'>
-                            <MessageButton />
+                            <MessageButton session={session} />
                             <div className='relative ml-3'>
                                 <ProfileDropdownButton
                                     isProfileMenuOpen={isProfileMenuOpen}

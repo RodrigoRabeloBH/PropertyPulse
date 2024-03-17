@@ -27,7 +27,7 @@ export default function SavedPropertiesPage() {
             <section className="px-4 py-6">
                 <div className="container-xl lg:container m-auto px-4 py-6">
                     <h1 className='text-2xl mb-10'>Bookmarked Properties</h1>
-                    {properties.lengtgh === 0 || properties.lengtgh === undefined ? (
+                    {properties.lengtgh === 0 ? (
                         <p>No property was Bookmarked </p>
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
