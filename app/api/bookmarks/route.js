@@ -3,10 +3,34 @@ import User from "@/models/User";
 import Property from "@/models/Property";
 import { getSessionUser } from "@/utils/getSessionUser";
 
-// POST api/bookmarks
+
 
 export const dynamic = 'force-dynamic';
 
+// GET api/bookmarks
+export async function GET(request) {
+    try {
+        await connectDB();
+
+        const sessionUser = await getSessionUser();
+
+        if (!sessionUser || !sessionUser.userId)
+            return new Response('Unauthorized', { status: 401 });
+
+        const { userId } = sessionUser;
+
+        const user = await User.findOne({ _id: userId });
+        
+        const bookmarkProperties = await Property.find({_id: {$in: user.bookmarks}}); 
+
+        return new Response(JSON.stringify(bookmarkProperties), { status: 200 });
+
+    } catch (error) {
+        return new Response(error, { status: 500 });
+    }
+}
+
+// POST api/bookmarks
 export const POST = async (request) => {
     try {
         await connectDB();

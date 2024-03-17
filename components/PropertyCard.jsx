@@ -24,6 +24,7 @@ export default function PropertyCard({ property }) {
                 height={0}
                 width={0}
                 className='w-full h-auto rounded-t-xl'
+                priority={true}
             />
             <div className="p-4">
                 <div className="text-left md:text-center lg:text-left mb-6">

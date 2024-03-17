@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { propertyCreateModel } from '@/models/propertyCreateModel';
-import { amenities } from '@/models/amenities';
+import { amenities } from '@/models/consts';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import Spinner from '@/components/Spinner';

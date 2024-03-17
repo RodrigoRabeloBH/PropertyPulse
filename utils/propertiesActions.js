@@ -1,5 +1,16 @@
 const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN || null;
 
+export async function getSearchProperties(searchTerm, propertyType) {
+    try {
+        if (!apiDomain)
+            return [];
+        const res = await fetch(`${apiDomain}/properties/search?searchTerm=${searchTerm}&propertyType=${propertyType}`);
+        return await res.json();
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
 export async function getProperties() {
     try {
         if (!apiDomain)
@@ -7,7 +18,7 @@ export async function getProperties() {
         const res = await fetch(`${apiDomain}/properties`, { cache: 'no-store' });
         if (!res.ok)
             throw new Error('Failed to fetch data');
-        return res.json();
+        return await res.json();
     } catch (error) {
         return [];
     }
@@ -20,7 +31,7 @@ export async function getPropertiesByUserId(userId) {
         const res = await fetch(`${apiDomain}/properties/user/${userId}`);
         if (!res.ok)
             throw new Error('Failed to fetch data');
-        return res.json();
+        return await res.json();
     } catch (error) {
         return [];
     }
@@ -33,9 +44,20 @@ export async function getPropertyById(id) {
         const res = await fetch(`${apiDomain}/properties/${id}`);
         if (!res.ok)
             throw new Error('Failed to fetch data');
-        return res.json();
+        return await res.json();
     } catch (error) {
         throw new Error('Failed to fetch data');
+    }
+}
+
+export async function getBookmarkedProperties() {
+    try {
+        if (!apiDomain)
+            return null;
+        const res = await fetch(`${apiDomain}/bookmarks`);
+        return res;
+    } catch (error) {
+        throw new Error(error);
     }
 }
 

@@ -28,10 +28,6 @@ export const amenities = [
         value: '24 / 7 Security'
     },
     {
-        id: 'amenity_wheelchair_accessible',
-        value: 'Wheelchair Accessible'
-    },
-    {
         id: 'amenity_elevator_access',
         value: 'Elevator Access'
     },
@@ -41,7 +37,7 @@ export const amenities = [
     },
     {
         id: 'amenity_gym_fitness_center',
-        value: 'Gym / Fitness Center'
+        value: 'Gym'
     },
     {
         id: 'amenity_air_conditioning',
@@ -64,10 +60,6 @@ export const amenities = [
         value: 'Outdoor Grill/BBQ'
     },
     {
-        id: 'amenity_high_speed_internet',
-        value: 'High-Speed Internet'
-    },
-    {
         id: 'amenity_fireplace',
         value: 'Fireplace'
     },
@@ -76,11 +68,19 @@ export const amenities = [
         value: 'Beach Access'
     },
     {
-        id: 'amenity_hiking_trails_access',
-        value: 'Hiking Trails Access'
-    },
-    {
         id: 'amenity_pet_friendly',
         value: 'Pet-Friendly'
     }
 ]
+
+export const options = [
+    { key: 1, value: 'All' },
+    { key: 2, value: 'Apartment' },
+    { key: 3, value: 'Studio' },
+    { key: 4, value: 'Condo' },
+    { key: 5, value: 'Cabin or Cottage' },
+    { key: 6, value: 'House' },
+    { key: 7, value: 'Loft' },
+    { key: 8, value: 'Room' },
+    { key: 9, value: 'Other' },
+];
