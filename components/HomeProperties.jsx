@@ -5,8 +5,8 @@ import { getProperties } from '@/utils/propertiesActions';
 
 export default async function HomeProperties() {
 
-    const properties = await getProperties();
-    const recentProperties = properties
+    const result = await getProperties();
+    const recentProperties = result.properties
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
         .slice(0, 3)
 

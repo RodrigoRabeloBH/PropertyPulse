@@ -8,12 +8,21 @@ import cloudinary from "@/config/cloudinary";
 // GET /api/properties
 export async function GET(request) {
     try {
+
         await connectDB();
-        const properties = await Property.find({});
-        return new Response(JSON.stringify(properties), { status: 200 });
+        
+        const page = await request.nextUrl.searchParams.get('page') || 1;
+        const pageSize = await request.nextUrl.searchParams.get('pageSize') || 6;
+        const skip = (page - 1) * pageSize;
+
+        const total = await Property.countDocuments({});
+        const properties = await Property.find({}).skip(skip).limit(pageSize);
+        const result = { total, properties };
+
+        return new Response(JSON.stringify(result), { status: 200 });
+
     } catch (error) {
-        console.error(error);
-        return new Response('Something Went Wrong', { status: 500 });
+        return new Response(JSON.stringify(error), { status: 500 });
     }
 }
 
@@ -49,12 +58,11 @@ export async function POST(request) {
         }
 
         const propertyData = createProperyData(formData, session.userId, uploadedImages);
-        const newProperty = new Property(propertyData);
+        const createdProperty = new Property(propertyData);
 
-        await newProperty.save();
+        await createdProperty.save();
+        return new Response(JSON.stringify(createdProperty), { status: 201 });
 
-        return Response.redirect(`${process.env.NEXTAUTH_URL}/properties/${newProperty._id}`);
-     
     } catch (error) {
         return new Response('Failed to add property', { status: 500 });
     }
