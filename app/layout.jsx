@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import 'photoswipe/dist/photoswipe.css'
 
 export const metadata = {
     title: 'Property Pulse | Find The Perfect Rental',

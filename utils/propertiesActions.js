@@ -11,13 +11,11 @@ export async function getSearchProperties(searchTerm, propertyType) {
     }
 }
 
-export async function getProperties() {
+export async function getProperties(page = 1, pageSize = 12) {
     try {
-        if (!apiDomain)
-            return [];
-        const res = await fetch(`${apiDomain}/properties`, { cache: 'no-store' });
-        if (!res.ok)
-            throw new Error('Failed to fetch data');
+        if (!apiDomain) return [];
+        const res = await fetch(`${apiDomain}/properties?page=${page}&pageSize=${pageSize}`,
+            { cache: 'no-store' });
         return await res.json();
     } catch (error) {
         return [];
@@ -218,6 +216,17 @@ export async function getUnreadMessagesCount() {
             return null;
         const res = await fetch(`${apiDomain}/messages/unread-count`);
         return res;
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+export async function getFeatureProperties() {
+    try {
+        if (!apiDomain)
+            return null;
+        const res = await fetch(`${apiDomain}/properties/featured`);
+        return await res.json();
     } catch (error) {
         throw new Error(error);
     }

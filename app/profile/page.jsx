@@ -35,7 +35,7 @@ export default function ProfilePage() {
         const confirmed = window.confirm('Are you sure you want to delete this property?');
 
         if (!confirmed) return;
-        
+
         deleteProperty(propertyId)
             .then(res => {
                 if (res.status === 200) {
@@ -45,10 +45,10 @@ export default function ProfilePage() {
                     setProperties(updatedProperties);
                 }
             })
-            .catch(() =>toast.error('Failed to delete property!'));
+            .catch(() => toast.error('Failed to delete property!'));
     }
 
-    return (
+    return !loading && (
         <section className="bg-blue-50">
             <div className="container m-auto py-24">
                 <div className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">

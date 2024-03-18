@@ -10,12 +10,10 @@ import { getPropertyById, updateProperty } from '@/utils/propertiesActions';
 const PropertyEditForm = () => {
     const { id } = useParams();
     const router = useRouter();
-    const [mounted, setMounted] = useState(false);
     const [fields, setFields] = useState(propertyCreateModel);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        setMounted(true);
         getPropertyById(id)
             .then(res => {
                 const propertyData = res;
@@ -98,7 +96,7 @@ const PropertyEditForm = () => {
     }
 
     return (
-        mounted && !loading && (
+        !loading && (
             <form autoComplete='off' onSubmit={(e => handleSubmit(e))}>
                 <h2 className='text-3xl text-center font-semibold mb-6'>
                     Edit Property
